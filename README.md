@@ -12,3 +12,4 @@ Application en VueJS de gestion de To do.
 - CSS page de création
 - CSS tâches
 - CSS accueil
+- Suppression tâche, avec validation 

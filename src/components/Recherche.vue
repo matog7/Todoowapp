@@ -1,11 +1,14 @@
 <template>
     <h2 class="title"> {{ infos }}</h2>
     <div class="search-task">
-        <input type="text" v-model="task" v-on:keyup.enter="getWeather" />
-        <button class="search-button" @click="searchTask"> Rechercher </button>
+        <input type="text" class="filter-name" v-model="task" v-on:keyup.enter="getWeather" placeholder="Nom de la tâche.."/>
     </div>
 
-    <div class="task-infos" v-for="(task, index) in this.tasks" :key="index">
+    <div class="task-infos" v-for="task in searchTask" :key="index">
+      <PrintTask v-if="this.tasks != null" :data="task" />
+    </div>
+
+    <div class="task-infos" v-if="searchTask.length == 0" v-for="task in this.tasks" :key="index">
       <PrintTask v-if="this.tasks != null" :data="task" />
     </div>
   </template>
@@ -19,7 +22,8 @@ import PrintTask from './PrintTasks.vue';
         infos: "Vous pouvez rechercher une tâche !",
         task: '',
         tasks: [],
-        data: null
+        recherche: false,
+        data: []
       }
     },
     created() {
@@ -28,6 +32,24 @@ import PrintTask from './PrintTasks.vue';
       if (savedTasks) {
         this.tasks = JSON.parse(savedTasks);
       }
+      console.log(this.tasks);
+    },
+    computed: {
+      searchTask() {
+        if (this.task) {
+          if (this.searchTask.length == 0){
+            this.infos = "Aucune tâche filtrée !";
+          } else {
+            this.infos = this.searchTask.length + " tâche(s) filtrée(s) !";
+          }
+          return this.tasks.filter((task) => {
+            return task.nom.toLowerCase().match(this.task.toLowerCase());
+          });
+        } else {
+          this.infos = "Vous pouvez rechercher une tâche !";
+          return this.tasks;
+        }
+      },
     },
     components: { PrintTask }
 }
@@ -48,13 +70,17 @@ import PrintTask from './PrintTasks.vue';
     padding-bottom: 10px;
   }
 
-  .search-button {
+  .filter-name{
+    height: 1rem;
+    border: 1px solid #2DCF42;
+    border-radius: 15px;
+    padding: 0.4rem;
+  }
+
+  .filter-name:focus {
+    outline: none;
     background-color: #2DCF42;
-    margin-left: 0.4rem;
-    border: none;
     color: white;
-    text-align: center;
-    border-radius: 5px;
   }
   
   .details {
