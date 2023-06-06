@@ -9,3 +9,12 @@ import Recherche from '../components/Recherche.vue';
     <Recherche />
   </main>
 </template>
+
+<script>
+export default {
+
+  mounted() {
+    document.title = 'Todoowapp | Accueil';
+  }
+}
+</script>

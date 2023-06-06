@@ -6,38 +6,30 @@
     </div>
 
     <DailyView v-if="this.data != null" :data="this.data" :city ="this.city" />
-    <div class="week-infos" v-for="(d, index) in this.week" :key="index">
-      <DayWeather v-if="this.week != null" :data="d" />
+    <div class="week-infos" v-for="(task, index) in this.tasks" :key="index">
+      <PrintTask v-if="this.tasks != null" :data="task" />
     </div>
   </template>
   
   <script>
-import DailyView from './DailyView.vue';
-import DayWeather from './DayWeather.vue';
+import PrintTask from './PrintTasks.vue';
 
   export default {
     data() {
       return {
         infos: "Vous pouvez rechercher une tâche !",
         tasks: [],
-        data: null,
-        week: null
+        data: null
       }
     },
     created() {
     // Récupère les données depuis le localStorage au chargement de l'application
       const savedTasks = localStorage.getItem('tasks');
-      if (savedMessage) {
-        this.message = savedMessage;
+      if (savedTasks) {
+        this.tasks = JSON.parse(savedTasks);
       }
     },
-    methods: {
-      saveMessage() {
-        // Sauvegarder le message dans le localStorage
-        localStorage.setItem('message', this.message);
-      }
-    },
-    components: { DailyView, DayWeather }
+    components: { PrintTask }
 }
   </script>
   

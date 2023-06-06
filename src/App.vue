@@ -4,24 +4,68 @@ import { RouterLink, RouterView } from 'vue-router'
 
 <template>
   <header>
-    <img alt="Vue logo" class="logo" src="@/assets/favicon.png" width="125" height="125" />
-
-    <div class="wrapper">
-      <h1>Mateorology</h1>
-      <p class="description">La météo, où vous le souhaitez, quand vous le souhaitez.</p>
-      <p class="description">© Auger Matéo, Posselt Timothée - IUT de Vannes 2023 </p>
       <nav>
-        <RouterLink to="/">Accueil</RouterLink>
-        <RouterLink to="/creation">Créer tâche</RouterLink>
+        <img alt="Vue logo" class="logo" src="@/img/logo.png"/>
+        <div class="router">
+          <p><RouterLink to="/">Accueil</RouterLink></p>
+          <p><RouterLink to="/creation">Créer tâche</RouterLink></p>
+          
+        </div>
       </nav>
-
-    </div>
   </header>
 
-  <RouterView />
+   <RouterView /> <!-- code envoyé selon la page choisi dans la barre de navigation -->
+
+  <footer>
+      <p class="description">Todoowapp, gérez vos tâches en toute sérénité.</p>
+      <p class="description">&copy; Auger Matéo | Posselt Timothée - IUT de Vannes 2023 </p>
+  </footer>
+
 </template>
 
 <style scoped>
+.logo{
+  width: 450px;
+  height: auto;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+
+nav {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.router{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+}
+
+footer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10rem;
+  margin-bottom: 2rem;
+}
+
+.description{
+  font-style: italic;
+  font-size: 14px;
+  margin-top: 0;
+  margin-bottom: 0;
+  line-height: 2
+}
 /* header {
   line-height: 1.5;
   max-height: 100vh;
