@@ -7,9 +7,8 @@ import { RouterLink, RouterView } from 'vue-router'
       <nav>
         <img alt="Vue logo" class="logo" src="@/img/logo.png"/>
         <div class="router">
-          <p><RouterLink to="/">Accueil</RouterLink></p>
-          <p><RouterLink to="/creation">Créer tâche</RouterLink></p>
-          
+          <RouterLink to="/">Accueil</RouterLink>
+          <RouterLink to="/creation">Créer tâche</RouterLink>
         </div>
       </nav>
   </header>
@@ -47,7 +46,27 @@ nav {
   display: flex;
   flex-direction: row;
   align-items: center;
+}
 
+.router a:hover {
+  background-color: transparent;
+}
+
+.router a {
+  color : #481C4B;
+  display: inline-block;
+  padding: 0 1rem;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.router a:last-child {
+  border-left: 2px solid #481C4B;
+}
+
+.router a.router-link-exact-active {
+  color: #2DCF42;
 }
 
 footer{
