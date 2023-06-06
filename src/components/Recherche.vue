@@ -1,12 +1,11 @@
 <template>
     <h2 class="title"> {{ infos }}</h2>
-    <div class="weather-info">
+    <div class="search-task">
         <input type="text" v-model="task" v-on:keyup.enter="getWeather" />
-        <button class="search-button" @click="getWeather"> Rechercher </button>
+        <button class="search-button" @click="searchTask"> Rechercher </button>
     </div>
 
-    <DailyView v-if="this.data != null" :data="this.data" :city ="this.city" />
-    <div class="week-infos" v-for="(task, index) in this.tasks" :key="index">
+    <div class="task-infos" v-for="(task, index) in this.tasks" :key="index">
       <PrintTask v-if="this.tasks != null" :data="task" />
     </div>
   </template>
@@ -18,6 +17,7 @@ import PrintTask from './PrintTasks.vue';
     data() {
       return {
         infos: "Vous pouvez rechercher une tâche !",
+        task: '',
         tasks: [],
         data: null
       }
@@ -35,12 +35,12 @@ import PrintTask from './PrintTasks.vue';
   
   <style scoped>
   
-  .weather-info {
+  .search-task {
     margin-top: 2rem;
     display: flex;
   }
 
-  .week-infos {
+  .task-infos {
     margin-top: 2rem;
     display: flex;
     flex-direction: column;
@@ -49,7 +49,7 @@ import PrintTask from './PrintTasks.vue';
   }
 
   .search-button {
-    background-color: #43A047;
+    background-color: #2DCF42;
     margin-left: 0.4rem;
     border: none;
     color: white;
