@@ -3,6 +3,10 @@
       <div class="task-info">
         <p>nom : {{ data.nom }}</p>
         <p>description : {{ data.description }}</p>
+        <p>date de début : {{ data.debut }}</p>
+        <p>date de fin : {{ data.fin }}</p>
+        <p>état : {{ data.etat }}</p>
+        <p>priorité : {{ data.priorite }}</p>
       </div>
     </div>
   </template>

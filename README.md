@@ -2,13 +2,13 @@
 Application en VueJS de gestion de To do.
 
 # Fonctionnel 
-- Création d'une tâche
+- Création d'une tâche (formulaire complet)
 - Affichage des tâches
 
 # Chose à faire
 - Recherche (avec mise à jour en direct ?)
 - filtre : pour afficher les tâches selon certains attributs 
-- Compléter formulaire de création
+- mettre les champs à vide après validation
 - CSS page de création
 - CSS tâches
 - CSS accueil
