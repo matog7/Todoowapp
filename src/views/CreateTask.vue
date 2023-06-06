@@ -1,6 +1,6 @@
 <template>
   <main>
-    <h2>Formulaire de création de tâches</h2>
+    <h2>Créer votre nouvelle tâche</h2>
     <form @submit="submitForm">
     <label for="taskName">Nom de la tâche:</label>
     <input type="text" id="taskName" v-model="taskName">
