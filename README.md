@@ -14,6 +14,7 @@ Application en VueJS de gestion de To do.
 # Chose à faire
 - mettre les champs à vide après validation
 - "page" affichage des tâches terminées
+- "page" modifier tâche
 - CSS page de création
 - CSS tâches
 - CSS accueil

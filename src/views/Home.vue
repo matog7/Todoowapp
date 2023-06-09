@@ -6,6 +6,7 @@ import Recherche from '../components/Recherche.vue';
 
 <template>
   <main>
+    <h2 class="title">Vos tâches</h2>
     <Recherche />
   </main>
 </template>
@@ -18,3 +19,7 @@ export default {
   }
 }
 </script>
+<style scoped>
+
+</style>
+

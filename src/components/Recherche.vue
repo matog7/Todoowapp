@@ -1,5 +1,4 @@
 <template>
-    <h2 class="title">Vos tâches</h2>
     <h3 class="subtitle">{{ infos }}</h3>
     <div class="search-task">
         <div class="search-filter">
