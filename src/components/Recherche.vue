@@ -1,16 +1,50 @@
 <template>
-    <h2 class="title"> {{ infos }}</h2>
+    <h2 class="title">Vos tâches</h2>
+    <h3 class="subtitle">{{ infos }}</h3>
     <div class="search-task">
-        <input type="text" class="filter-name" v-model="task" v-on:keyup.enter="getWeather" placeholder="Nom de la tâche.."/>
+        <div class="search-filter">
+          <label for="taskName">Nom de la tâche:</label>
+          <input type="text" class="filter-name" v-model="task" placeholder="Nom de la tâche.."/>
+        </div>
+        <div class="search-filter">
+          <label for="dateDebut">Date de début</label>
+          <input type="date" v-model="selectedStart" id="dateDebut"/>
+        </div>
+        <div class="search-filter">
+          <label for="dateFin">Date de fin</label>
+          <input type="date" v-model="selectedEnd" id = "dateFin"/>
+        </div>
+        <div class="search-filter">
+          <label for="etat">état de la tâche</label>
+          <select v-model="selectedEtat" id="etat">
+            <option value="à faire">à faire</option>
+            <option value="en cours">en cours</option>
+            <option value="terminé">terminé</option>
+          </select>
+        </div>
+        <div class="search-filter">
+          <label for="prio">priorité de la tâche</label>
+          <select v-model="selectedPrio" id="prio">
+            <option value="haute">haute</option>
+            <option value="moyenne">moyenne</option>
+            <option value="basse">basse</option>
+          </select>
+        </div>
+        <button class="btn" @click="applyFilter">Rechercher</button>
+        <button class="btn" @click="resetFilter">Effacer</button>
     </div>
 
-    <div class="task-infos" v-for="task in searchTask" :key="index">
+    <div class="task-infos" v-if="this.filtrage == false" v-for="task in searchTask" :key="index">
       <PrintTask v-if="this.tasks != null" :data="task" />
     </div>
 
-    <div class="task-infos" v-if="searchTask.length == 0" v-for="task in this.tasks" :key="index">
-      <PrintTask v-if="this.tasks != null" :data="task" />
+    <div class="task-infos" v-if="this.filtrage == true" v-for="task in this.filteredTasks" :key="index">
+      <PrintTask v-if="this.filteredTasks != null" :data="task" />
     </div>
+
+    <p class="nothing" v-if="searchTask.length == 0">Aucune tâche ne correspond à ce nom.</p>
+    <p class="nothing" v-if="this.filtered == true">Aucune tâche ne correspond à ces critères.</p>
+
   </template>
   
   <script>
@@ -22,21 +56,34 @@ import PrintTask from './PrintTasks.vue';
         infos: "Vous pouvez rechercher une tâche !",
         task: '',
         tasks: [],
-        recherche: false,
-        data: []
+        data: [], 
+        filtrage: false,
+        filteredTasks: [], 
+        alerted: false, 
+        filtered: false,
       }
     },
     created() {
-    // Récupère les données depuis le localStorage au chargement de l'application
+      // Récupère les données depuis le localStorage au chargement de l'application
       const savedTasks = localStorage.getItem('tasks');
       if (savedTasks) {
         this.tasks = JSON.parse(savedTasks);
       }
       console.log(this.tasks);
+      // Prépare une alerte indiquant les taches à terminer aujourd'hui
+      if (this.alerted == false){
+        this.alertTasks();
+      }
     },
     computed: {
       searchTask() {
         if (this.task) {
+          this.filtrage = false;
+          this.filteredTasks = [];
+          this.selectedEtat = "";
+          this.selectedPrio = "";
+          this.selectedStart = "";
+          this.selectedEnd = "";
           if (this.searchTask.length == 0){
             this.infos = "Aucune tâche filtrée !";
           } else {
@@ -45,11 +92,60 @@ import PrintTask from './PrintTasks.vue';
           return this.tasks.filter((task) => {
             return task.nom.toLowerCase().match(this.task.toLowerCase());
           });
+          
         } else {
           this.infos = "Vous pouvez rechercher une tâche !";
           return this.tasks;
         }
       },
+    },
+    methods: {
+      applyFilter() {
+        this.filtrage = true;
+        this.filteredTasks = this.tasks.filter(task => {
+          if (this.selectedPrio == "haute") {
+            return task.priorite.includes("haute");
+          } else if (this.selectedPrio == "moyenne") {
+            return task.priorite.includes("moyenne");
+          } else if (this.selectedPrio == "basse") {
+            return task.priorite.includes("basse");
+          } else if (this.selectedEtat == "en cours") {
+            return task.etat.includes("en cours");
+          } else if (this.selectedEtat == "à faire") {
+            return task.etat.includes("à faire");
+          } else if (this.selectedEtat == "terminé") {
+            return task.etat.includes("terminé");
+          } else if (this.selectedStart != "" && this.selectedEnd != "") {
+            return task.dateDebut >= this.selectedStart && task.dateFin <= this.selectedEnd;
+          } else { 
+            return this.infos = "Aucune tâche filtrée...";
+          }
+        });
+    },
+    alertTasks(){
+      this.tasks.forEach((t) => {
+        if (t.dateFin = new Date()){
+          this.data.push(t.nom);
+        }
+      });
+      if (this.data.length > 1){
+        const tasksToBeDone = this.data.join(", ");
+        alert("Bonjour ! Vous avez les tâches " + tasksToBeDone + " à terminer !");
+      } else if (this.data.length == 1){
+        alert("Bonjour ! Vous avez la tâche " + this.data + " à terminer !");
+      }
+      this.alerted = true;
+    }, 
+
+    resetFilter(){
+      this.filtrage = false;
+      this.filteredTasks = [];
+      this.selectedEtat = "";
+      this.selectedPrio = "";
+      this.selectedStart = "";
+      this.selectedEnd = "";
+    }
+
     },
     components: { PrintTask }
 }
@@ -60,6 +156,14 @@ import PrintTask from './PrintTasks.vue';
   .search-task {
     margin-top: 2rem;
     display: flex;
+    flex-direction: row;
+    height: 6rem;
+    padding-bottom: 10px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background-color: #481C4B;
+    width: 75rem;
   }
 
   .task-infos {
@@ -87,6 +191,33 @@ import PrintTask from './PrintTasks.vue';
     flex: 1;
     margin-left: 1rem;
   }
+
+  .search-filter {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+    margin-right: 1rem;
+  }
+
+  .search-filter label {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: white;
+  }
+
+  .search-filter input {
+    padding: 0.5rem;
+  }
+
+  .btn {
+    background-color: #2DCF42;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    padding: 0.4rem;
+    height: 2rem;
+    margin-right: 0.5rem;
+  }
   
   i {
     display: flex;
@@ -98,7 +229,7 @@ import PrintTask from './PrintTasks.vue';
   }
   
   h3 {
-    font-size: 1.2rem;
+    font-size: 0.8rem;
     font-weight: 500;
     margin-bottom: 0.4rem;
     color: var(--color-heading);

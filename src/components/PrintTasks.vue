@@ -34,15 +34,22 @@
     margin-right: 1rem;
   }
   .task-info{
+    color: white;
     margin-bottom: 2rem;
     display: flex;
+    width: 55rem;
     flex-direction: row;
-    background-color: wheat;
+    background-color: #481C4B;
     border-radius: 10px;
   }
 
   .task-info p:first-of-type{
     font-weight: bold;
+    margin-right: 1rem;
+    margin-left: 1rem;
+  }
+
+  .task-info p{
     margin-right: 1rem;
   }
   </style>

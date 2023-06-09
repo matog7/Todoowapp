@@ -53,45 +53,46 @@
     },
     methods: {
         submitForm(event) {
-        event.preventDefault(); // Empêche le rechargement de la page
+          event.preventDefault(); // Empêche le rechargement de la page
 
-        if(this.taskName===""){
-          alert("pas de nom");
-          return;
-        };
+          if(this.taskName===""){
+            alert("pas de nom");
+            return;
+          };
 
-        if(this.dateFin < this.dateDebut){
-          console.log("date de fin < date de début");
-          alert("date de fin < date de début");
-          return;
-        };
-        
-        // Effectuer des opérations avec les données du formulaire
-        console.log('Nom de la tâche:', this.taskName);
-        console.log('Description de la tâche:', this.taskDescription);
-        console.log('date du début', this.dateDebut);
-        console.log('date de fin', this.dateFin);
-        console.log('état de la tâche', this.etat);
-        console.log('priorité de la tâche', this.prio);
+          if(this.dateFin < this.dateDebut){
+            console.log("date de fin < date de début");
+            alert("date de fin < date de début");
+            return;
+          };
+          
+          // Effectuer des opérations avec les données du formulaire
+          console.log('Nom de la tâche:', this.taskName);
+          console.log('Description de la tâche:', this.taskDescription);
+          console.log('date du début', this.dateDebut);
+          console.log('date de fin', this.dateFin);
+          console.log('état de la tâche', this.etat);
+          console.log('priorité de la tâche', this.prio);
 
-        const newTask = {
-            nom : this.taskName,
-            description : this.taskDescription,
-            debut : this.dateDebut,
-            fin : this.dateFin,
-            etat : this.etat,
-            priorite : this.prio
-        }
-        
-        this.tasks.push(newTask);
+          const newTask = {
+              nom : this.taskName,
+              description : this.taskDescription,
+              debut : this.dateDebut,
+              fin : this.dateFin,
+              etat : this.etat,
+              priorite : this.prio
+          }
+          
+          this.tasks.push(newTask);
 
-        localStorage.setItem('tasks', JSON.stringify(this.tasks));
-        
-        // Réinitialiser les champs du formulaire
-        this.taskName = "";
-        this.taskDescription = "";
-        this.dateDebut = "";
-        this.dateFin = "";
+          localStorage.setItem('tasks', JSON.stringify(this.tasks));
+          
+          // Réinitialiser les champs du formulaire
+          alert("Tâche insérée.")
+          this.taskName = "";
+          this.taskDescription = "";
+          this.dateDebut = "";
+          this.dateFin = "";
         }
     },
 }
