@@ -70,9 +70,9 @@ import PrintTask from './PrintTasks.vue';
       }
       console.log(this.tasks);
       // Prépare une alerte indiquant les taches à terminer aujourd'hui
-      if (this.alerted == false){
-        this.alertTasks();
-      }
+      // if (this.alerted == false){
+      //   this.alertTasks();
+      // }
     },
     computed: {
       searchTask() {
@@ -121,20 +121,20 @@ import PrintTask from './PrintTasks.vue';
           }
         });
     },
-    alertTasks(){
-      this.tasks.forEach((t) => {
-        if (t.dateFin = new Date()){
-          this.data.push(t.nom);
-        }
-      });
-      if (this.data.length > 1){
-        const tasksToBeDone = this.data.join(", ");
-        alert("Bonjour ! Vous avez les tâches " + tasksToBeDone + " à terminer !");
-      } else if (this.data.length == 1){
-        alert("Bonjour ! Vous avez la tâche " + this.data + " à terminer !");
-      }
-      this.alerted = true;
-    }, 
+    // alertTasks(){
+    //   this.tasks.forEach((t) => {
+    //     if (t.dateFin = new Date()){
+    //       this.data.push(t.nom);
+    //     }
+    //   });
+    //   if (this.data.length > 1){
+    //     const tasksToBeDone = this.data.join(", ");
+    //     alert("Bonjour ! Vous avez les tâches " + tasksToBeDone + " à terminer !");
+    //   } else if (this.data.length == 1){
+    //     alert("Bonjour ! Vous avez la tâche " + this.data + " à terminer !");
+    //   }
+    //   this.alerted = true;
+    // }, 
 
     resetFilter(){
       this.filtrage = false;
