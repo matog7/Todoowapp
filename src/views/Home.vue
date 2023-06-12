@@ -6,7 +6,7 @@ import PrintDoneTasks from '../components/PrintDoneTasks.vue';
 </script>
 
 <template>
-  <main>
+  <main class="main">
     <h2 class="title">Vos tâches</h2>
     <div class = "menu">
       <a @click="showAll">Tâches en cours</a>
@@ -42,7 +42,13 @@ export default {
 }
 </script>
 <style scoped>
-
+.main{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2rem;
+  font-family: 'ailerons', sans-serif;
+}
 .menu a {
   background-color: transparent;
   cursor: pointer;

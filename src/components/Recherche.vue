@@ -18,7 +18,6 @@
           <select v-model="selectedEtat" id="etat">
             <option value="à faire">à faire</option>
             <option value="en cours">en cours</option>
-            <option value="terminé">terminé</option>
           </select>
         </div>
         <div class="search-filter">
@@ -34,11 +33,11 @@
     </div>
 
     <div class="task-infos" v-if="this.filtrage == false" v-for="task in searchTask" :key="index">
-      <PrintTask v-if="this.tasks != null" :data="task" />
+        <PrintTask v-if="this.tasks != null" :data="task" />
     </div>
 
     <div class="task-infos" v-if="this.filtrage == true" v-for="task in this.filteredTasks" :key="index">
-      <PrintTask v-if="this.filteredTasks != null" :data="task" />
+        <PrintTask v-if="this.filteredTasks != null" :data="task" />
     </div>
 
     <p class="nothing" v-if="searchTask.length == 0">Aucune tâche ne correspond à ce nom.</p>
@@ -163,6 +162,12 @@ import PrintTask from './PrintTasks.vue';
     border-radius: 10px;
     background-color: #481C4B;
     width: 75rem;
+  }
+
+  .task{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
   }
 
   .task-infos {

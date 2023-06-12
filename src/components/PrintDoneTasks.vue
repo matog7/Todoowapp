@@ -7,8 +7,8 @@ import PrintTasks from './PrintTasks.vue';
 <template>
     <div class="container">
       <h2 class="title">Les tâches terminées</h2>
-      <div class="task-info" v-for="task in this.done" :key="index">
-        <PrintTasks v-if="this.done.length > 0" :data="task"/>
+      <div class="task-info" v-for="task in this.data" :key="index">
+        <PrintTasks v-if="this.data != null" :data="task"/>
       </div>
       <p v-if="print == true"> {{ infos }}</p>
     </div>
@@ -26,18 +26,18 @@ import PrintTasks from './PrintTasks.vue';
     },
     created() {
         this.print = false;
-        // Récupère les données depuis le localStorage au chargement de l'application
-        const savedTasks = localStorage.getItem('tasks');
+        // Récupère les tâches terminées depuis le localStorage au chargement de l'application
+        const savedTasks = localStorage.getItem('done');
         if (savedTasks) {
             this.data = JSON.parse(savedTasks);
         }
         console.log(this.data);
-        this.data.forEach(task => {
-            if (task.etat.match("terminé")){
-                this.done.push(task);
-            }
-        });
-        if (this.done.length == 0){
+        // this.data.forEach(task => {
+        //     if (task.etat.match("terminé")){
+        //         this.done.push(task);
+        //     }
+        // });
+        if (this.data.length == 0){
             this.print = true;
             this.infos = "Vous n'avez terminée aucune tâche pour le moment.";
         }
@@ -55,6 +55,12 @@ import PrintTasks from './PrintTasks.vue';
     align-items: center;
     margin-bottom: 2rem;
     font-family: 'ailerons', sans-serif;
+  }
+
+  .task{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
   }
 
   .icon{

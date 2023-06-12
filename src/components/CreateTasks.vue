@@ -17,7 +17,6 @@
           <select id="etat" v-model="etat">
             <option value="à faire">à faire</option>
             <option value="en cours">en cours</option>
-            <option value="terminé">terminé</option>
           </select>
   
           <label for="prio">priorité de la tâche</label>
