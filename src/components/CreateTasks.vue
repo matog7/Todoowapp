@@ -5,7 +5,7 @@
           <input type="text" id="taskName" v-model="taskName">
           
           <label for="taskDescription">Description de la tâche:</label>
-          <textarea id="taskDescription" v-model="taskDescription"></textarea>
+          <textarea id="taskDescription" v-model="taskDescription" maxlength="40"></textarea>
   
           <label for="dateDebut">Date de début</label>
           <input type="date" id="dateDebut" v-model="dateDebut">

@@ -1,4 +1,5 @@
 <template>
+  <div class="affichage">
     <h3 class="subtitle">{{ infos }}</h3>
     <div class="search-task">
         <div class="search-filter">
@@ -40,9 +41,9 @@
         <PrintTask v-if="this.filteredTasks != null" :data="task" />
     </div>
 
-    <p class="nothing" v-if="searchTask.length == 0">Aucune tâche ne correspond à ce nom.</p>
+    <p class="nothing" v-if="searchTask.length == 0">Aucune tâche ne correspond à votre recherche.</p>
     <p class="nothing" v-if="this.filtered == true">Aucune tâche ne correspond à ces critères.</p>
-
+  </div>
   </template>
   
   <script>
@@ -150,7 +151,12 @@ import PrintTask from './PrintTasks.vue';
   </script>
   
   <style scoped>
-  
+  .affichage{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
   .search-task {
     margin-top: 2rem;
     display: flex;
@@ -175,7 +181,7 @@ import PrintTask from './PrintTasks.vue';
     display: flex;
     flex-direction: column;
     height: 4rem;
-    padding-bottom: 10px;
+    margin-bottom: 2rem;
   }
 
   .filter-name{

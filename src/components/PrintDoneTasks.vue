@@ -68,15 +68,6 @@ import PrintTasks from './PrintTasks.vue';
     height: 50px;
     margin-right: 1rem;
   }
-  .task-info{
-    color: white;
-    margin-bottom: 2rem;
-    display: flex;
-    width: 55rem;
-    flex-direction: row;
-    background-color: #481C4B;
-    border-radius: 10px;
-  }
 
   .task-info p:first-of-type{
     font-weight: bold;
