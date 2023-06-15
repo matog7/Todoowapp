@@ -27,6 +27,7 @@
       <div class="data-column">
         <label for="switchInput">Tâche terminée ?</label>
         <p id="switchInput"><input v-if="this.data.etat != this.state" type="checkbox" v-model="isChecked" class="switch-input" @change="changeEtat"/></p>
+        <RouterLink to="/modification"><a id="crayon" @click="modifier"><img id="crayonIcon" src="src/components/icons/crayon.png" alt="Modifier la tâche"></a></RouterLink>
       </div>
     </div>
   </template>
@@ -51,7 +52,7 @@
     methods:{
       changeEtat(){
         this.data.etat = "terminée";
-        this.data.dateFin = new Date();
+        this.data.dateFin = new Date().toLocaleDateString();
         this.done.push(this.data);
         localStorage.setItem('done', JSON.stringify(this.done));
         console.log("Tâches terminées : ", this.done)
@@ -61,11 +62,17 @@
       }
     },
   }
-  
-  
   </script>
   
   <style scoped>
+  .container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 2rem;
+    font-family: 'ailerons', sans-serif;
+  }
+
   .icon{
     width: 50px;
     height: 50px;
@@ -81,20 +88,6 @@
     align-items: center;
     background-color: #481C4B;
     border-radius: 10px;
-
-  }
-
-  .data-column{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-left: 3rem;
-    min-height: 50px;
-    flex-grow: 1;
-  }
-
-  #description{
-    max-width: 5rem;
   }
 
   .task-info label{

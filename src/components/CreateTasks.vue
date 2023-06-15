@@ -2,7 +2,7 @@
     <main>
         <form @submit="submitForm">
           <label for="taskName">Nom de la tâche:</label>
-          <input type="text" id="taskName" v-model="taskName">
+          <input type="text" id="taskName" v-model="taskName" required>
           
           <label for="taskDescription">Description de la tâche:</label>
           <textarea id="taskDescription" v-model="taskDescription" maxlength="40"></textarea>
@@ -50,11 +50,6 @@ export default {
     methods: {
         submitForm(event) {
           event.preventDefault(); // Empêche le rechargement de la page
-
-          if(this.taskName===""){
-            alert("pas de nom");
-            return;
-          };
 
           if(this.dateFin < this.dateDebut){
             console.log("date de fin < date de début");

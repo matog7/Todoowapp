@@ -9,6 +9,7 @@ import { RouterLink, RouterView } from 'vue-router'
         <div class="router">
           <RouterLink to="/">Accueil</RouterLink>
           <RouterLink to="/creation">Créer tâche</RouterLink>
+          <!-- <RouterLink to="/modification">modifier tâche</RouterLink> -->
         </div>
       </nav>
   </header>
