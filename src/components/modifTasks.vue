@@ -78,7 +78,7 @@
       },
   
       loadTaskData() {
-        console.log("tttttttttt", this.tasks.nom)
+        console.log("tttttttttt", this.tasks[1].nom)
         const taskData = localStorage.getItem('tasks');
         if (taskData) {
           const parsedData = JSON.parse(taskData);
