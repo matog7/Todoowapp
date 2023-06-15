@@ -7,6 +7,7 @@
         <p>date de fin : {{ data.fin }}</p>
         <p>état : {{ data.etat }}</p>
         <p>priorité : {{ data.priorite }}</p>
+        <input v-if="this.data.etat != this.state" id="switchInput" type="checkbox" v-model="isChecked" class="switch-input" @change="changeEtat"/>
         <RouterLink to="/modification"><a id="crayon" @click="modifier"><img id="crayonIcon" src="src/components/icons/crayon.png" alt="Modifier la tâche"></a></RouterLink>
       </div>
     </div>
@@ -15,11 +16,6 @@
   <script>
   export default {
     props : ['data'],
-    // methods: {
-    //   modifier(tasks) {
-    //     this.$router.push(`/modification`);
-    //   }
-    // }
   }
   </script>
   
@@ -61,4 +57,12 @@
   .task-info p{
     margin-right: 1rem;
   }
+
+  .switch-input{
+    margin-left: 1rem;
+    width: 50px;
+    height: 25px;
+    border-radius: 10px;
+  }
+
   </style>

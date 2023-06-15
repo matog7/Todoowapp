@@ -18,7 +18,6 @@
           <select v-model="selectedEtat" id="etat">
             <option value="à faire">à faire</option>
             <option value="en cours">en cours</option>
-            <option value="terminé">terminé</option>
           </select>
         </div>
         <div class="search-filter">
@@ -34,11 +33,11 @@
     </div>
 
     <div class="task-infos" v-if="this.filtrage == false" v-for="task in searchTask" :key="index">
-      <PrintTask v-if="this.tasks != null" :data="task" />
+        <PrintTask v-if="this.tasks != null" :data="task" />
     </div>
 
     <div class="task-infos" v-if="this.filtrage == true" v-for="task in this.filteredTasks" :key="index">
-      <PrintTask v-if="this.filteredTasks != null" :data="task" />
+        <PrintTask v-if="this.filteredTasks != null" :data="task" />
     </div>
 
     <p class="nothing" v-if="searchTask.length == 0">Aucune tâche ne correspond à ce nom.</p>
@@ -70,9 +69,9 @@ import PrintTask from './PrintTasks.vue';
       }
       console.log(this.tasks);
       // Prépare une alerte indiquant les taches à terminer aujourd'hui
-      if (this.alerted == false){
-        this.alertTasks();
-      }
+      // if (this.alerted == false){
+      //   this.alertTasks();
+      // }
     },
     computed: {
       searchTask() {
@@ -121,20 +120,20 @@ import PrintTask from './PrintTasks.vue';
           }
         });
     },
-    alertTasks(){
-      this.tasks.forEach((t) => {
-        if (t.dateFin = new Date()){
-          this.data.push(t.nom);
-        }
-      });
-      if (this.data.length > 1){
-        const tasksToBeDone = this.data.join(", ");
-        alert("Bonjour ! Vous avez les tâches " + tasksToBeDone + " à terminer !");
-      } else if (this.data.length == 1){
-        alert("Bonjour ! Vous avez la tâche " + this.data + " à terminer !");
-      }
-      this.alerted = true;
-    }, 
+    // alertTasks(){
+    //   this.tasks.forEach((t) => {
+    //     if (t.dateFin = new Date()){
+    //       this.data.push(t.nom);
+    //     }
+    //   });
+    //   if (this.data.length > 1){
+    //     const tasksToBeDone = this.data.join(", ");
+    //     alert("Bonjour ! Vous avez les tâches " + tasksToBeDone + " à terminer !");
+    //   } else if (this.data.length == 1){
+    //     alert("Bonjour ! Vous avez la tâche " + this.data + " à terminer !");
+    //   }
+    //   this.alerted = true;
+    // }, 
 
     resetFilter(){
       this.filtrage = false;
@@ -163,6 +162,12 @@ import PrintTask from './PrintTasks.vue';
     border-radius: 10px;
     background-color: #481C4B;
     width: 75rem;
+  }
+
+  .task{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
   }
 
   .task-infos {
