@@ -7,6 +7,7 @@
         <p>date de fin : {{ data.fin }}</p>
         <p>état : {{ data.etat }}</p>
         <p>priorité : {{ data.priorite }}</p>
+        <RouterLink to="/modification"><a id="crayon" @click="modifier"><img id="crayonIcon" src="src/components/icons/crayon.png" alt="Modifier la tâche"></a></RouterLink>
       </div>
     </div>
   </template>
@@ -14,9 +15,12 @@
   <script>
   export default {
     props : ['data'],
+    // methods: {
+    //   modifier(tasks) {
+    //     this.$router.push(`/modification`);
+    //   }
+    // }
   }
-  
-  
   </script>
   
   <style scoped>
@@ -26,6 +30,10 @@
     align-items: center;
     margin-bottom: 2rem;
     font-family: 'ailerons', sans-serif;
+  }
+
+  #crayonIcon{
+    width: 30px;
   }
 
   .icon{
@@ -41,6 +49,7 @@
     flex-direction: row;
     background-color: #481C4B;
     border-radius: 10px;
+    align-items: center;
   }
 
   .task-info p:first-of-type{
