@@ -24,10 +24,12 @@
         <label for="prio">Priorité</label>
         <p id="prio">{{ data.priorite }}</p>
       </div>
-      <div class="data-column">
+      <div class="data-column" v-if="this.data.etat != this.state">
         <label for="switchInput">Tâche terminée ?</label>
-        <p id="switchInput"><input v-if="this.data.etat != this.state" type="checkbox" v-model="isChecked" class="switch-input" @change="changeEtat"/></p>
-        <RouterLink to="/modification"><a id="crayon" @click="modifier"><img id="crayonIcon" src="src/components/icons/crayon.png" alt="Modifier la tâche"></a></RouterLink>
+        <p id="switchInput"><input type="checkbox" v-model="isChecked" class="switch-input" @change="changeEtat"/></p>
+      </div>
+      <div class="data-column" v-if="this.data.etat != this.state">
+        <RouterLink to='/modification'><a id="crayon" @click="modifier"><img id="crayonIcon" src="src/components/icons/crayon.png" alt="Modifier la tâche"></a></RouterLink>
       </div>
     </div>
   </template>
@@ -39,6 +41,7 @@
       return{
         isChecked : false,
         done : [], 
+        modif : [],
         state : "terminée"
       }
     },
@@ -59,19 +62,19 @@
         localStorage.removeItem('tasks', JSON.stringify(this.data.id));
         alert("Tâche " + this.data.nom +" terminée.")  
         window.location.reload();
+      }, 
+
+      modifier(){
+        localStorage.removeItem('modif');
+        this.modif.push(this.data);
+        localStorage.setItem('modif', this.modif);
+        console.log("Tâche à modifier : ", this.modif);
       }
     },
   }
   </script>
   
   <style scoped>
-  .container {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin-bottom: 2rem;
-    font-family: 'ailerons', sans-serif;
-  }
 
   .icon{
     width: 50px;
@@ -85,7 +88,9 @@
     display: flex;
     width: 75rem;
     flex-direction: row;
+    flex-grow: 1;
     align-items: center;
+    justify-content: center;
     background-color: #481C4B;
     border-radius: 10px;
   }
@@ -93,6 +98,13 @@
   .task-info label{
     font-weight: bold;
     margin-top: 1rem;
+  }
+
+  .data-column{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 1rem;
   }
 
   .data-column:last-of-type{
@@ -103,6 +115,12 @@
   .switch-input{
     width: 50px;
     height: 15px;
+    margin-right: 1rem;
+  }
+
+  #crayonIcon{
+    width: 50px;
+    height: 50px;
     margin-right: 1rem;
   }
 

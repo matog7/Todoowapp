@@ -1,6 +1,6 @@
 <script setup>
 
-import modifTasks from '../components/modifTasks.vue';
+import ModifTasks from '../components/modifTasks.vue';
 
 </script>
 
@@ -8,24 +8,13 @@ import modifTasks from '../components/modifTasks.vue';
   <main>
     <div class="formulaire">
       <h2>Modifier votre tâche</h2>
-      <modifTasks />
+      <ModifTasks />
+      
     </div>
   </main>
 </template>
 <script>
 export default {
-    data() {
-        return {
-            tasks: {
-                nom: '',
-                description: '',
-                debut: '',
-                fin: '',
-                etat: '',
-                priorite: ''
-            }
-        }
-    },
     mounted() {
         document.title = 'Todoowapp | Modification tâche';
     },
