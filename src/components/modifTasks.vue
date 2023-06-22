@@ -87,6 +87,32 @@
   
       reset() {
         localStorage.removeItem('modif');
+      },
+      loadTaskData() {
+        console.log("tttttttttt", this.tasks[1].nom)
+        const taskData = localStorage.getItem('tasks');
+        if (taskData) {
+          const parsedData = JSON.parse(taskData);
+          this.tasks = {
+            nom: parsedData.nom,
+            description: parsedData.description,
+            debut: parsedData.debut,
+            fin: parsedData.fin,
+            etat: parsedData.etat,
+            priorite: parsedData.priorite,
+          }
+        };
+      },
+  
+      resetForm() {
+        this.tasks= {
+          nom: '',
+          description: '',
+          debut: '',
+          fin: '',
+          etat: '',
+          priorite: ''
+        };
       }
     }
   }
