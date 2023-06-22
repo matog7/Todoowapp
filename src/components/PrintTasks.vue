@@ -84,11 +84,10 @@
   .task-info{
     font-family: 'ailerons', sans-serif;
     color: white;
-    margin-bottom: 2rem;
+    margin-bottom: 5rem;
     display: flex;
-    width: 75rem;
+    width: 70rem;
     flex-direction: row;
-    flex-grow: 1;
     align-items: center;
     justify-content: center;
     background-color: #481C4B;
@@ -107,11 +106,6 @@
     margin-right: 1rem;
   }
 
-  .data-column:last-of-type{
-    margin-right: 3rem;
-    
-  }
-
   .switch-input{
     width: 50px;
     height: 15px;
@@ -122,6 +116,26 @@
     width: 50px;
     height: 50px;
     margin-right: 1rem;
+  }
+
+  /* Media queries */
+  @media (max-width: 1024px){
+    .task-info{
+      width: 40rem;
+      font-size: 8px;
+    }
+
+    #crayonIcon{
+      width: 15px;
+      height: 15px;
+      margin-right: 1rem;
+    }
+
+    .switch-input{
+      width: 20px;
+      height: 8px;
+      margin-right: 1rem;
+    }
   }
 
   </style>
