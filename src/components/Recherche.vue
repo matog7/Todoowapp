@@ -115,7 +115,9 @@ import PrintTask from './PrintTasks.vue';
           } else if (this.selectedEtat == "terminé") {
             return task.etat.includes("terminé");
           } else if (this.selectedStart != "" && this.selectedEnd != "") {
-            return task.dateDebut >= this.selectedStart && task.dateFin <= this.selectedEnd;
+            console.log("test des dates");
+            console.log("task.dateDebut ", task.debut, " this.selectedStart ", this.selectedStart)
+            return task.debut >= this.selectedStart && task.fin <= this.selectedEnd;
           } else { 
             return this.infos = "Aucune tâche filtrée...";
           }
